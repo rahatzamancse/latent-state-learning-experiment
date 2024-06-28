@@ -44,6 +44,7 @@ const info = <const>{
 };
 
 type Info = typeof info;
+type DragDataType = { x: number, y: number, time: number }[];
 
 /**
  * **dragndrop**
@@ -61,7 +62,7 @@ class DragndropPlugin implements JsPsychPlugin<Info> {
   trial(display_element: HTMLElement, trial: TrialType<Info>) {
     const jsPsych = this.jsPsych;
     display_element.innerHTML = "";
-    const allDragData = [];
+    const allDragData: DragDataType[] = [];
     for (let i = 0; i < trial.buckets.length; i++) {
       display_element.innerHTML += `<div id="jspsych-dragndrop-bucket-${i}" class="jspsych-dragndrop-bucket">
         <img src="${trial.buckets[i]}" class="jspsych-dragndrop-bucket-img" />
@@ -82,7 +83,7 @@ class DragndropPlugin implements JsPsychPlugin<Info> {
     // calculate the position for each draggable element with radius, angle, and center. The first bucket is at 0 degrees, the second at 360/num_buckets degrees, and so on.
     const num_buckets = trial.buckets.length;
     const angle = 360 / num_buckets;
-    const radius = trial.radius;
+    const radius = trial.radius!;
     const draggable_xs = [];
     const draggable_ys = [];
     for (let i = 0; i < num_buckets; i++) {
@@ -148,7 +149,7 @@ class DragndropPlugin implements JsPsychPlugin<Info> {
       const dx = e.clientX - element.getBoundingClientRect().left;
       const dy = e.clientY - element.getBoundingClientRect().top;
       
-      let currentDragData = [];
+      let currentDragData: DragDataType = [];
       
       // tracking
       const trackingInterval = setInterval(() => {
@@ -160,7 +161,7 @@ class DragndropPlugin implements JsPsychPlugin<Info> {
       }, 10); // Record position every millisecond
 
 
-      function move(e) {
+      function move(e: MouseEvent) {
         element.style.left = e.clientX - dx + "px";
         element.style.top = e.clientY - dy + "px";
       }
