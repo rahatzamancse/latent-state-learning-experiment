@@ -14,6 +14,8 @@ import jsPsychWebgazerCalibrate from '@jspsych/plugin-webgazer-calibrate';
 
 import DragndropPlugin from "./plugin-dragndrop.ts";
 
+import PavloviaPlugin from "./plugin-pavlovia";
+
 const TRACK_EYE = true;
 const jsPsych = initJsPsych({
   extensions: TRACK_EYE ? [{
@@ -30,12 +32,10 @@ const jsPsych = initJsPsych({
 const timeline: { [key: string]: any }[] = [];
 
 /* init connection with pavlovia.org */
-// var pavlovia_init = {
-//   type: Pavlovia,
-//   command: "init"
-// };
-// timeline.push(pavlovia_init);
-
+timeline.push({
+  type: PavloviaPlugin,
+  command: "init"
+});
 
 // Preload assets
 // timeline.push({
@@ -303,11 +303,10 @@ timeline.push({
 });
 
 /* finish connection with pavlovia.org */
-// var pavlovia_finish = {
-//   type: Pavlovia,
-//   command: "finish"
-// };
-// timeline.push(pavlovia_finish);
+timeline.push({
+  type: PavloviaPlugin,
+  command: "finish"
+});
 
 
 

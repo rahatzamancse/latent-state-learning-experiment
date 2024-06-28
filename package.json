@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.30",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },
@@ -21,6 +22,7 @@
     "@jspsych/plugin-webgazer-calibrate": "^1.0.3",
     "@jspsych/plugin-webgazer-init-camera": "^1.0.3",
     "@jspsych/plugin-webgazer-validate": "^1.0.3",
+    "jquery": "^3.7.1",
     "jspsych": "^7.3.4",
     "npm": "^10.8.1"
   }
